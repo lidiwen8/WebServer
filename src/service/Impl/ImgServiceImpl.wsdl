@@ -1,0 +1,250 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions targetNamespace="http://Impl.service" xmlns:apachesoap="http://xml.apache.org/xml-soap" xmlns:impl="http://Impl.service" xmlns:intf="http://Impl.service" xmlns:tns1="http://util" xmlns:tns2="http://entity" xmlns:tns3="http://io.java" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:wsdlsoap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+<!--WSDL created by Apache Axis version: 1.4
+Built on Apr 22, 2006 (06:55:48 PDT)-->
+ <wsdl:types>
+  <schema elementFormDefault="qualified" targetNamespace="http://Impl.service" xmlns="http://www.w3.org/2001/XMLSchema">
+   <import namespace="http://io.java"/>
+   <import namespace="http://xml.apache.org/xml-soap"/>
+   <import namespace="http://util"/>
+   <import namespace="http://entity"/>
+   <element name="pc" type="xsd:int"/>
+   <element name="pr" type="xsd:int"/>
+   <complexType name="ArrayOf_xsd_anyType">
+    <sequence>
+     <element maxOccurs="unbounded" minOccurs="0" name="item" type="xsd:anyType"/>
+    </sequence>
+   </complexType>
+   <element name="findAllReturn" type="tns1:PageBean"/>
+   <element name="pc1" type="xsd:int"/>
+   <element name="pr1" type="xsd:int"/>
+   <element name="username" type="xsd:string"/>
+   <element name="findUserImgReturn" type="tns1:PageBean"/>
+   <element name="id" type="xsd:int"/>
+   <element name="findByidReturn" type="tns2:ImageBean"/>
+   <element name="id1" type="xsd:int"/>
+  </schema>
+  <schema elementFormDefault="qualified" targetNamespace="http://xml.apache.org/xml-soap" xmlns="http://www.w3.org/2001/XMLSchema">
+   <import namespace="http://io.java"/>
+   <import namespace="http://util"/>
+   <import namespace="http://Impl.service"/>
+   <import namespace="http://entity"/>
+   <complexType name="Vector">
+    <sequence>
+     <element maxOccurs="unbounded" minOccurs="0" name="item" type="xsd:anyType"/>
+    </sequence>
+   </complexType>
+  </schema>
+  <schema elementFormDefault="qualified" targetNamespace="http://util" xmlns="http://www.w3.org/2001/XMLSchema">
+   <import namespace="http://io.java"/>
+   <import namespace="http://xml.apache.org/xml-soap"/>
+   <import namespace="http://Impl.service"/>
+   <import namespace="http://entity"/>
+   <complexType name="PageBean">
+    <sequence>
+     <element name="beanList" nillable="true" type="impl:ArrayOf_xsd_anyType"/>
+     <element name="pc" type="xsd:int"/>
+     <element name="pr" type="xsd:int"/>
+     <element name="tp" type="xsd:int"/>
+     <element name="tr" type="xsd:int"/>
+     <element name="url" nillable="true" type="xsd:string"/>
+    </sequence>
+   </complexType>
+  </schema>
+  <schema elementFormDefault="qualified" targetNamespace="http://entity" xmlns="http://www.w3.org/2001/XMLSchema">
+   <import namespace="http://io.java"/>
+   <import namespace="http://xml.apache.org/xml-soap"/>
+   <import namespace="http://util"/>
+   <import namespace="http://Impl.service"/>
+   <complexType name="ImageBean">
+    <sequence>
+     <element name="date" nillable="true" type="xsd:string"/>
+     <element name="id" type="xsd:int"/>
+     <element name="inStream" nillable="true" type="xsd:anyType"/>
+     <element name="ip" nillable="true" type="xsd:string"/>
+     <element name="name" nillable="true" type="xsd:string"/>
+     <element name="size" type="xsd:float"/>
+     <element name="src" nillable="true" type="xsd:string"/>
+     <element name="username" nillable="true" type="xsd:string"/>
+    </sequence>
+   </complexType>
+  </schema>
+ </wsdl:types>
+
+   <wsdl:message name="deleteByidResponse">
+
+   </wsdl:message>
+
+   <wsdl:message name="findUserImgRequest">
+
+      <wsdl:part element="impl:pc1" name="pc"/>
+
+      <wsdl:part element="impl:pr1" name="pr"/>
+
+      <wsdl:part element="impl:username" name="username"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="findUserImgResponse">
+
+      <wsdl:part element="impl:findUserImgReturn" name="findUserImgReturn"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="findAllRequest">
+
+      <wsdl:part element="impl:pc" name="pc"/>
+
+      <wsdl:part element="impl:pr" name="pr"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="findByidResponse">
+
+      <wsdl:part element="impl:findByidReturn" name="findByidReturn"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="findByidRequest">
+
+      <wsdl:part element="impl:id" name="id"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="findAllResponse">
+
+      <wsdl:part element="impl:findAllReturn" name="findAllReturn"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="deleteByidRequest">
+
+      <wsdl:part element="impl:id1" name="id"/>
+
+   </wsdl:message>
+
+   <wsdl:portType name="ImgServiceImpl">
+
+      <wsdl:operation name="findAll" parameterOrder="pc pr">
+
+         <wsdl:input message="impl:findAllRequest" name="findAllRequest"/>
+
+         <wsdl:output message="impl:findAllResponse" name="findAllResponse"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="findUserImg" parameterOrder="pc pr username">
+
+         <wsdl:input message="impl:findUserImgRequest" name="findUserImgRequest"/>
+
+         <wsdl:output message="impl:findUserImgResponse" name="findUserImgResponse"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="findByid" parameterOrder="id">
+
+         <wsdl:input message="impl:findByidRequest" name="findByidRequest"/>
+
+         <wsdl:output message="impl:findByidResponse" name="findByidResponse"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="deleteByid" parameterOrder="id">
+
+         <wsdl:input message="impl:deleteByidRequest" name="deleteByidRequest"/>
+
+         <wsdl:output message="impl:deleteByidResponse" name="deleteByidResponse"/>
+
+      </wsdl:operation>
+
+   </wsdl:portType>
+
+   <wsdl:binding name="ImgServiceImplSoapBinding" type="impl:ImgServiceImpl">
+
+      <wsdlsoap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+
+      <wsdl:operation name="findAll">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="findAllRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="findAllResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="findUserImg">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="findUserImgRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="findUserImgResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="findByid">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="findByidRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="findByidResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="deleteByid">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="deleteByidRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="deleteByidResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+   </wsdl:binding>
+
+   <wsdl:service name="ImgServiceImplService">
+
+      <wsdl:port binding="impl:ImgServiceImplSoapBinding" name="ImgServiceImpl">
+
+         <wsdlsoap:address location="http://10.20.71.30:8081//services/service/Impl/ImgServiceImpl"/>
+
+      </wsdl:port>
+
+   </wsdl:service>
+
+</wsdl:definitions>

@@ -1,0 +1,167 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions targetNamespace="http://Impl.service" xmlns:apachesoap="http://xml.apache.org/xml-soap" xmlns:impl="http://Impl.service" xmlns:intf="http://Impl.service" xmlns:tns1="http://entity" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:wsdlsoap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+<!--WSDL created by Apache Axis version: 1.4
+Built on Apr 22, 2006 (06:55:48 PDT)-->
+ <wsdl:types>
+  <schema elementFormDefault="qualified" targetNamespace="http://entity" xmlns="http://www.w3.org/2001/XMLSchema">
+   <complexType name="User">
+    <sequence>
+     <element name="description" nillable="true" type="xsd:string"/>
+     <element name="mail" nillable="true" type="xsd:string"/>
+     <element name="name" nillable="true" type="xsd:string"/>
+     <element name="number" nillable="true" type="xsd:string"/>
+     <element name="password" nillable="true" type="xsd:string"/>
+     <element name="sessionname" nillable="true" type="xsd:string"/>
+     <element name="sex" nillable="true" type="xsd:string"/>
+    </sequence>
+   </complexType>
+  </schema>
+  <schema elementFormDefault="qualified" targetNamespace="http://Impl.service" xmlns="http://www.w3.org/2001/XMLSchema">
+   <import namespace="http://entity"/>
+   <element name="user" type="tns1:User"/>
+   <element name="addReturn" type="xsd:int"/>
+   <element name="name" type="xsd:string"/>
+   <element name="queryUserReturn" type="tns1:User"/>
+   <element name="name1" type="xsd:string"/>
+   <element name="password" type="xsd:string"/>
+   <element name="loginReturn" type="tns1:User"/>
+  </schema>
+ </wsdl:types>
+
+   <wsdl:message name="loginResponse">
+
+      <wsdl:part element="impl:loginReturn" name="loginReturn"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="addRequest">
+
+      <wsdl:part element="impl:user" name="user"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="queryUserResponse">
+
+      <wsdl:part element="impl:queryUserReturn" name="queryUserReturn"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="addResponse">
+
+      <wsdl:part element="impl:addReturn" name="addReturn"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="loginRequest">
+
+      <wsdl:part element="impl:name1" name="name"/>
+
+      <wsdl:part element="impl:password" name="password"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="queryUserRequest">
+
+      <wsdl:part element="impl:name" name="name"/>
+
+   </wsdl:message>
+
+   <wsdl:portType name="UserServiceImpl">
+
+      <wsdl:operation name="add" parameterOrder="user">
+
+         <wsdl:input message="impl:addRequest" name="addRequest"/>
+
+         <wsdl:output message="impl:addResponse" name="addResponse"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="queryUser" parameterOrder="name">
+
+         <wsdl:input message="impl:queryUserRequest" name="queryUserRequest"/>
+
+         <wsdl:output message="impl:queryUserResponse" name="queryUserResponse"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="login" parameterOrder="name password">
+
+         <wsdl:input message="impl:loginRequest" name="loginRequest"/>
+
+         <wsdl:output message="impl:loginResponse" name="loginResponse"/>
+
+      </wsdl:operation>
+
+   </wsdl:portType>
+
+   <wsdl:binding name="UserServiceImplSoapBinding" type="impl:UserServiceImpl">
+
+      <wsdlsoap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+
+      <wsdl:operation name="add">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="addRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="addResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="queryUser">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="queryUserRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="queryUserResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="login">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="loginRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="loginResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+   </wsdl:binding>
+
+   <wsdl:service name="UserServiceImplService">
+
+      <wsdl:port binding="impl:UserServiceImplSoapBinding" name="UserServiceImpl">
+
+         <wsdlsoap:address location="http://10.20.71.30:8081//services/service/Impl/UserServiceImpl"/>
+
+      </wsdl:port>
+
+   </wsdl:service>
+
+</wsdl:definitions>
